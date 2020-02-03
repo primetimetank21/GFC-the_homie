@@ -18,6 +18,7 @@
             padding: 0;
             margin: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100vw;
@@ -53,15 +54,51 @@
         .btn:hover {
             border-color: black;
         }
+
+        img {
+            padding-bottom: 10px;
+        }
+
+        .progressBar-bar {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
     </style>
     <title>Surviving the Streets</title>
 </head>
 
 <body>
     <script src="https://connect.facebook.net/en_US/fbinstant.6.3.js"></script>
+    <script src="/questions/textNodes.js"></script>
+    <script src="person.js"></script>
     <script src='main.js'></script>
+
+
+    <img id="homie-image" />
+
+    <div class="bar-group">
+        <div class="progressBar-bar">
+                <div class="">💙 </div>
+                <progress id="health" value="" max="100"></progress>
+
+        </div>
+
+        <div class="progressBar-bar">
+                <div class="">💰 </div>
+                <progress id="wealth" value="" max="100"></progress>
+        </div>
+        
+        <div class="progressBar-bar">
+                <div class="">😁 </div>
+                <progress id="happiness" value="" max="100"></progress>
+        </div>
+
+        
+    </div>
     <div class="container">
         <div id="player"></div>
+
 
         <div id="text"></div>
         <div id="option-buttons" class="btn-grid">

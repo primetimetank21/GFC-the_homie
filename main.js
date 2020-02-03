@@ -1,11 +1,11 @@
-console.log('hello');
+console.log('Starting Game...');
 
 FBInstant.initializeAsync()
     .then(() => {
 
         var progress = 0;
         var interval = setInterval(() => {
-            progress += 3;
+            progress += 2.5;
             FBInstant.setLoadingProgress(progress);
 
             if (progress >= 99) {
@@ -13,6 +13,9 @@ FBInstant.initializeAsync()
                 FBInstant.startGameAsync()
                     .then(() => {
                         console.log("Game has been started!");
+
+                        let character = new Person();
+                        console.log(JSON.stringify(character));
 
                         var contextId = FBInstant.context.getID();
                         var contextType = FBInstant.context.getType();
@@ -24,7 +27,16 @@ FBInstant.initializeAsync()
                         const textElement = document.getElementById('text');
                         const optionButtonsElement = document.getElementById('option-buttons');
                         const playerNameElement = document.getElementById('player');
+                        const homieImageElement = document.getElementById('homie-image');
+                        const characterHealth = document.getElementById('health');
+                        const characterWealth = document.getElementById('wealth');
+                        const characterHappiness = document.getElementById('happiness');
+
                         playerNameElement.innerText = `Hello ${playerName}!`;
+                        homieImageElement.src = playerPic;
+                        characterHealth.value = character.health;
+                        characterWealth.value = character.wealth;
+                        characterHappiness.value = character.happiness;
 
                         let state = {}
 
@@ -64,158 +76,6 @@ FBInstant.initializeAsync()
                             showTextNode(nextTextNodeId)
                         }
 
-                        const textNodes = [
-                            {
-                                id: 1,
-                                text: 'You wake up in a strange place and you see a jar of blue goo near you.',
-                                options: [
-                                    {
-                                        text: 'Take the goo',
-                                        setState: { blueGoo: true },
-                                        nextText: 2
-                                    },
-                                    {
-                                        text: 'Leave the goo',
-                                        nextText: 2
-                                    }
-                                ]
-                            },
-                            {
-                                id: 2,
-                                text: 'You venture forth in search of answers to where you are when you come across a merchant.',
-                                options: [
-                                    {
-                                        text: 'Trade the goo for a sword',
-                                        requiredState: (currentState) => currentState.blueGoo,
-                                        setState: { blueGoo: false, sword: true },
-                                        nextText: 3
-                                    },
-                                    {
-                                        text: 'Trade the goo for a shield',
-                                        requiredState: (currentState) => currentState.blueGoo,
-                                        setState: { blueGoo: false, shield: true },
-                                        nextText: 3
-                                    },
-                                    {
-                                        text: 'Ignore the merchant',
-                                        nextText: 3
-                                    }
-                                ]
-                            },
-                            {
-                                id: 3,
-                                text: 'After leaving the merchant you start to feel tired and stumble upon a small town next to a dangerous looking castle.',
-                                options: [
-                                    {
-                                        text: 'Explore the castle',
-                                        nextText: 4
-                                    },
-                                    {
-                                        text: 'Find a room to sleep at in the town',
-                                        nextText: 5
-                                    },
-                                    {
-                                        text: 'Find some hay in a stable to sleep in',
-                                        nextText: 6
-                                    }
-                                ]
-                            },
-                            {
-                                id: 4,
-                                text: 'You are so tired that you fall asleep while exploring the castle and are killed by some terrible monster in your sleep.',
-                                options: [
-                                    {
-                                        text: 'Restart',
-                                        nextText: -1
-                                    }
-                                ]
-                            },
-                            {
-                                id: 5,
-                                text: 'Without any money to buy a room you break into the nearest inn and fall asleep. After a few hours of sleep the owner of the inn finds you and has the town guard lock you in a cell.',
-                                options: [
-                                    {
-                                        text: 'Restart',
-                                        nextText: -1
-                                    }
-                                ]
-                            },
-                            {
-                                id: 6,
-                                text: 'You wake up well rested and full of energy ready to explore the nearby castle.',
-                                options: [
-                                    {
-                                        text: 'Explore the castle',
-                                        nextText: 7
-                                    }
-                                ]
-                            },
-                            {
-                                id: 7,
-                                text: 'While exploring the castle you come across a horrible monster in your path.',
-                                options: [
-                                    {
-                                        text: 'Try to run',
-                                        nextText: 8
-                                    },
-                                    {
-                                        text: 'Attack it with your sword',
-                                        requiredState: (currentState) => currentState.sword,
-                                        nextText: 9
-                                    },
-                                    {
-                                        text: 'Hide behind your shield',
-                                        requiredState: (currentState) => currentState.shield,
-                                        nextText: 10
-                                    },
-                                    {
-                                        text: 'Throw the blue goo at it',
-                                        requiredState: (currentState) => currentState.blueGoo,
-                                        nextText: 11
-                                    }
-                                ]
-                            },
-                            {
-                                id: 8,
-                                text: 'Your attempts to run are in vain and the monster easily catches.',
-                                options: [
-                                    {
-                                        text: 'Restart',
-                                        nextText: -1
-                                    }
-                                ]
-                            },
-                            {
-                                id: 9,
-                                text: 'You foolishly thought this monster could be slain with a single sword.',
-                                options: [
-                                    {
-                                        text: 'Restart',
-                                        nextText: -1
-                                    }
-                                ]
-                            },
-                            {
-                                id: 10,
-                                text: 'The monster laughed as you hid behind your shield and ate you.',
-                                options: [
-                                    {
-                                        text: 'Restart',
-                                        nextText: -1
-                                    }
-                                ]
-                            },
-                            {
-                                id: 11,
-                                text: 'You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.',
-                                options: [
-                                    {
-                                        text: 'Congratulations. Play Again.',
-                                        nextText: -1
-                                    }
-                                ]
-                            }
-                        ]
 
                         startGame()
 
