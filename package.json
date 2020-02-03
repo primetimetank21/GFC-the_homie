@@ -1,0 +1,12 @@
+{
+  "name": "fbinstantgame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server --ssl -c-1 -p 8080 -a 127.0.0.1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Earl Tankard, Jr.",
+  "license": "ISC"
+}
