@@ -2,43 +2,58 @@ class Person {
 
     constructor() {
         this.health = Math.floor(Math.random() * 100 + 1);
-        this.wealth = Math.floor(Math.random() * 100 + 1);;
-        this.happiness = Math.floor(Math.random() * 100 + 1);;
+        this.wealth = Math.floor(Math.random() * 100 + 1);
+        this.happiness = Math.floor(Math.random() * 100 + 1);
     }
 
     healthUp() {
-        this.health += Math.floor(Math.random() * 10 + 1);
-        console.log(`Health increased! Current Health: ${this.health}`);
-        // return this.health++;
+        const upHealth = Math.floor(Math.random() * 10 + 1);
+        document.getElementById('health').value += upHealth;
+        console.log(`Health increased! Current Health: ${health.value}`);
     }
-    
+
     wealthUp() {
-        this.wealth += Math.floor(Math.random() * 10 + 1);
-        console.log(`Wealth increased! Current Wealth: ${this.wealth}`);
-        // return this.health++;
+        const upWealth = Math.floor(Math.random() * 10 + 1);
+        document.getElementById('wealth').value += upWealth;
+        console.log(`Wealth increased! Current Wealth: ${wealth.value}`);
     }
 
     happinessUp() {
-        this.happiness += Math.floor(Math.random() * 10 + 1);
-        console.log(`Happiness increased! Current Happiness: ${this.happiness}`);
-        // return this.health++;
+        const upHappiness = Math.floor(Math.random() * 10 + 1);
+        document.getElementById('happiness').value += upHappiness;
+        console.log(`Happiness increased! Current Happiness: ${happiness.value}`);
     }
 
     healthDown() {
-        this.health -= Math.floor(Math.random() * 10 + 1);
-        console.log(`Health decreased! Current Health: ${this.health}`);
-        // return this.health++;
+        const downHealth = Math.floor(Math.random() * 10 + 1);
+        document.getElementById('health').value -= downHealth;
+        console.log(`Health decreased! Current Health: ${health.value}`);
     }
 
     wealthDown() {
-        this.wealth -= Math.floor(Math.random() * 10 + 1);
-        console.log(`Wealth decreased! Current Wealth: ${this.wealth}`);
-        // return this.health++;
+        const downWealth = Math.floor(Math.random() * 10 + 1);
+        document.getElementById('wealth').value -= downWealth;
+        console.log(`Wealth increased! Current Wealth: ${wealth.value}`);
     }
 
     happinessDown() {
-        this.happiness -= Math.floor(Math.random() * 10 + 1);
-        console.log(`Happiness decreased! Current Happiness: ${this.happiness}`);
-        // return this.health++;
+        const downHappiness = Math.floor(Math.random() * 10 + 1);
+        document.getElementById('happiness').value -= downHappiness;
+        console.log(`Happiness increased! Current Happiness: ${happiness.value}`);
+    }
+
+    sickness() {
+        //TODO
+    }
+
+    death() {
+        console.log(`You died :(`);
+        health.value = Math.floor(Math.random() * 100 + 1);
+        wealth.value = Math.floor(Math.random() * 100 + 1);
+        happiness.value = Math.floor(Math.random() * 100 + 1);
+        //TODO
     }
 }
+
+var character = new Person();
+//TODO: at end of each function, check if attributes are below a certain threshold; if they are, end the game

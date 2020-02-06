@@ -1,15 +1,17 @@
-const textNodes = [
+var textNodes = [
     {
         id: 1,
-        text: 'You wake up in a strange place and you see a cup of liquid nearby.',
+        text: 'You wake up in a strange place and you see a cup of goo nearby.',
         options: [
             {
-                text: 'Drink the liquid',
+                text: 'Take goo',
                 setState: { blueGoo: true },
+                actions: [character.healthUp, character.wealthUp],
                 nextText: 2
             },
             {
                 text: 'Leave it alone',
+                actions: [character.healthDown],
                 nextText: 2
             }
         ]
@@ -19,19 +21,22 @@ const textNodes = [
         text: 'You venture forth in search of answers to where you are when you come across a merchant.',
         options: [
             {
-                text: 'Trade the goo for a sword',
+                text: 'Trade the goo and money for a sword',
                 requiredState: (currentState) => currentState.blueGoo,
+                actions: [character.wealthDown, character.wealthDown, character.healthDown, character.happinessUp],
                 setState: { blueGoo: false, sword: true },
                 nextText: 3
             },
             {
-                text: 'Trade the goo for a shield',
+                text: 'Trade the goo and money for a shield',
                 requiredState: (currentState) => currentState.blueGoo,
+                actions: [character.wealthDown, character.healthDown, character.happinessUp],
                 setState: { blueGoo: false, shield: true },
                 nextText: 3
             },
             {
                 text: 'Ignore the merchant',
+                actions: [character.healthDown],
                 nextText: 3
             }
         ]
@@ -42,14 +47,17 @@ const textNodes = [
         options: [
             {
                 text: 'Explore the castle',
+                actions: [character.healthDown, character.healthDown, character.healthDown],
                 nextText: 4
             },
             {
                 text: 'Find a room to sleep at in the town',
+                actions: [character.healthUp, character.healthUp, character.healthUp],
                 nextText: 5
             },
             {
                 text: 'Find some hay in a stable to sleep in',
+                actions: [character.healthUp, character.healthUp],
                 nextText: 6
             }
         ]
@@ -60,6 +68,7 @@ const textNodes = [
         options: [
             {
                 text: 'Restart',
+                actions: [character.death],
                 nextText: -1
             }
         ]
@@ -153,12 +162,12 @@ const textNodes = [
 
 const textNodes2 = [
     {
-        id:1,
+        id: 1,
         text: 'You wake up in a strange place and you see a cup of liquid nearby.',
         options: [
             {
                 text: 'Drink the liquid',
-                setState: { water: true,  },
+                setState: { water: true, },
                 nextText: 2
             },
             {
@@ -169,4 +178,6 @@ const textNodes2 = [
     },
 ];
 
-// module.exports.textNodes = textNodes;
+//TODO: Make a "loop" where each day starts at an id x; they are then given random decisions above that id x value.
+//      After making y choices, set id back to x and check if attributes are below a certain threshold.
+//          if true ? end game by setting id to end condition z : continue game

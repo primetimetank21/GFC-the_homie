@@ -14,8 +14,7 @@ FBInstant.initializeAsync()
                     .then(() => {
                         console.log("Game has been started!");
 
-                        let character = new Person();
-                        console.log(JSON.stringify(character));
+
 
                         var contextId = FBInstant.context.getID();
                         var contextType = FBInstant.context.getType();
@@ -42,6 +41,10 @@ FBInstant.initializeAsync()
 
                         function startGame() {
                             state = {}
+                            // characterHealth.value = character.health;
+                            // characterWealth.value = character.wealth;
+                            // characterHappiness.value = character.happiness;
+                            // console.log(`Health: ${health.value}\nWealth: ${wealth.value}\nHappiness: ${happines.value}`);
                             showTextNode(1)
                         }
 
@@ -69,6 +72,15 @@ FBInstant.initializeAsync()
 
                         function selectOption(option) {
                             const nextTextNodeId = option.nextText
+                            const attributeChange = option.actions;
+
+                            if (attributeChange) {
+                                console.log(attributeChange)
+                                attributeChange.forEach(action => {
+                                    action();
+                                })
+                            }
+
                             if (nextTextNodeId <= 0) {
                                 return startGame()
                             }
@@ -84,10 +96,8 @@ FBInstant.initializeAsync()
             }
 
         }, 50)
-
-        // console.log("loaded");
     }
     );
 
-
+// use this link (NOT in chrome) to test
 // https://www.facebook.com/embed/instantgames/3098210396865430/player?game_url=https://localhost:8080
