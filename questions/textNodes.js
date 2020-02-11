@@ -20,8 +20,9 @@ var textNodes = [
         text: 'You are losing the fight.',
         options: [
             {
-                text: 'Take goo',
-                setState: { blueGoo: true },
+                text: 'Keep fighting',
+                requiredState: (currentState) => currentState.fight,
+                setState: { round2: true },
                 actions: [character.healthUp, character.wealthUp],
                 nextText: 2
             },
