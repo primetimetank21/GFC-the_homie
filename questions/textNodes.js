@@ -21,19 +21,19 @@ var textNodes = [
         text: 'You venture forth in search of answers to where you are when you come across a merchant.',
         options: [
             {
-                text: 'Trade the goo and money for a sword',
+                text: 'Trade the goo and money for dress pants   ',
                 requiredState: (currentState) => currentState.blueGoo,
                 actions: [character.wealthDown, character.wealthDown, character.healthDown, character.happinessUp],
-                setState: { blueGoo: false, sword: true },
+                setState: { blueGoo: false, pants: true },
                 nextText: 3
             },
             {
-                text: 'Trade the goo and money for a shield',
+                text: 'Trade the goo and money for a dress shirt',
                 requiredState: (currentState) => currentState.blueGoo,
                 actions: [character.wealthDown, character.healthDown, character.happinessUp],
-                setState: { blueGoo: false, shield: true },
+                setState: { blueGoo: false, shirt: true },
                 nextText: 3
-            },
+            },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             {
                 text: 'Ignore the merchant',
                 actions: [character.healthDown],
