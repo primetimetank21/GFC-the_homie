@@ -1,7 +1,40 @@
 var textNodes = [
     {
         id: 1,
-        text: 'You wake up in a strange place and you see a cup of goo nearby.',
+        text: 'You wake up in a strange place to a police officer yelling at you.',
+        options: [
+            {
+                text: 'Run Away',
+                nextText: 3
+            },
+            {
+                text: 'Fight him',
+                setState: { fight: true },
+                actions: [character.healthDown],
+                nextText: 2
+            }
+        ]
+    },
+    {
+        id: 2,
+        text: 'You are losing the fight.',
+        options: [
+            {
+                text: 'Keep fighting',
+                requiredState: (currentState) => currentState.fight,
+                setState: { round2: true },
+                actions: [character.healthUp, character.wealthUp],
+                nextText: 2
+            },
+            {
+                text: 'Run Away',
+                nextText: 3
+            }
+        ]
+    },
+    {
+        id: 3,
+        text: 'You see a cup of goo nearby.',
         options: [
             {
                 text: 'Take goo',
@@ -17,23 +50,23 @@ var textNodes = [
         ]
     },
     {
-        id: 2,
+        id: 3,
         text: 'You venture forth in search of answers to where you are when you come across a merchant.',
         options: [
             {
-                text: 'Trade the goo and money for a sword',
+                text: 'Trade the goo and money for dress pants   ',
                 requiredState: (currentState) => currentState.blueGoo,
                 actions: [character.wealthDown, character.wealthDown, character.healthDown, character.happinessUp],
-                setState: { blueGoo: false, sword: true },
-                nextText: 3
+                setState: { blueGoo: false, pants: true },
+                nextText: 4
             },
             {
-                text: 'Trade the goo and money for a shield',
+                text: 'Trade the goo and money for a dress shirt',
                 requiredState: (currentState) => currentState.blueGoo,
                 actions: [character.wealthDown, character.healthDown, character.happinessUp],
-                setState: { blueGoo: false, shield: true },
-                nextText: 3
-            },
+                setState: { blueGoo: false, shirt: true },
+                nextText: 4
+            },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             {
                 text: 'Ignore the merchant',
                 actions: [character.healthDown],
@@ -42,7 +75,7 @@ var textNodes = [
         ]
     },
     {
-        id: 3,
+        id: 4,
         text: 'After leaving the merchant you start to feel tired and stumble upon a small town next to a dangerous looking castle.',
         options: [
             {
@@ -63,7 +96,7 @@ var textNodes = [
         ]
     },
     {
-        id: 4,
+        id: 5,
         text: 'You are so tired that you fall asleep while exploring the castle and are killed by some terrible monster in your sleep.',
         options: [
             {
@@ -74,7 +107,7 @@ var textNodes = [
         ]
     },
     {
-        id: 5,
+        id: 6,
         text: 'Without any money to buy a room you break into the nearest inn and fall asleep. After a few hours of sleep the owner of the inn finds you and has the town guard lock you in a cell.',
         options: [
             {
@@ -85,7 +118,7 @@ var textNodes = [
         ]
     },
     {
-        id: 6,
+        id: 7,
         text: 'You wake up well rested and full of energy ready to explore the nearby castle.',
         options: [
             {
@@ -96,7 +129,7 @@ var textNodes = [
         ]
     },
     {
-        id: 7,
+        id: 8,
         text: 'While exploring the castle you come across a horrible monster in your path.',
         options: [
             {
@@ -125,7 +158,7 @@ var textNodes = [
         ]
     },
     {
-        id: 8,
+        id: 9,
         text: 'Your attempts to run are in vain and the monster easily catches.',
         options: [
             {
@@ -136,7 +169,7 @@ var textNodes = [
         ]
     },
     {
-        id: 9,
+        id: 10,
         text: 'You foolishly thought this monster could be slain with a single sword.',
         options: [
             {
@@ -147,7 +180,7 @@ var textNodes = [
         ]
     },
     {
-        id: 10,
+        id: 11,
         text: 'The monster laughed as you hid behind your shield and ate you.',
         options: [
             {
@@ -158,12 +191,22 @@ var textNodes = [
         ]
     },
     {
-        id: 11,
+        id: 12,
         text: 'You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.',
         options: [
             {
                 text: 'Congratulations! Play Again.',
                 actions: [character.reset],
+                nextText: -1
+            }
+        ]
+    },
+    {
+        id: 13,
+        text: 'After a getting tired of beating you up the officer shoots you.',
+        options: [
+            {
+                text: 'Restart',
                 nextText: -1
             }
         ]
