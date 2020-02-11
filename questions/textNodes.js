@@ -24,7 +24,7 @@ var textNodes = [
                 requiredState: (currentState) => currentState.fight,
                 setState: { round2: true },
                 actions: [character.healthUp, character.wealthUp],
-                nextText: 2
+                nextText: 13
             },
             {
                 text: 'Run Away',
@@ -34,7 +34,7 @@ var textNodes = [
     },
     {
         id: 3,
-        text: 'You see a cup of goo nearby.',
+        text: 'You sucessfully ran away. You look around and see a cup of goo nearby.',
         options: [
             {
                 text: 'Take goo',
