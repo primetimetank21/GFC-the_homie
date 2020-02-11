@@ -1,7 +1,18 @@
 console.log('Starting Game...');
+var data = [];
 
 FBInstant.initializeAsync()
     .then(() => {
+
+        var images = document.images;
+        for (var i = 0, len = images.length; i < len; i++) {
+            data.push(images[i].src);
+            var progress = ((i + 1) / images.length) * 100;
+            // var assetName = data[i];
+            // FBInstant.game.load.image(assetName);        //don't work >:/
+            // game.load.image(assetName);                  //don't work >:/
+            // FBInstant.setLoadingProgress(progress);
+        }
 
         var progress = 0;
         var interval = setInterval(() => {
@@ -10,6 +21,7 @@ FBInstant.initializeAsync()
 
             if (progress >= 99) {
                 clearInterval(interval);
+
                 FBInstant.startGameAsync()
                     .then(() => {
                         console.log("Game has been started!");
@@ -93,11 +105,11 @@ FBInstant.initializeAsync()
 
                         // console.log(`${playerId} and ${playerName}`);
                     })
+                // }
             }
-
         }, 50)
-    }
-    );
+    });
+
 
 // use this link (NOT in chrome) to test
 // https://www.facebook.com/embed/instantgames/3098210396865430/player?game_url=https://localhost:8080

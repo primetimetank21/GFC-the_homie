@@ -47,17 +47,17 @@ var textNodes = [
         options: [
             {
                 text: 'Explore the castle',
-                actions: [character.healthDown, character.healthDown, character.healthDown],
+                actions: [character.death],
                 nextText: 4
             },
             {
                 text: 'Find a room to sleep at in the town',
-                actions: [character.healthUp, character.healthUp, character.healthUp],
+                actions: [character.death],
                 nextText: 5
             },
             {
                 text: 'Find some hay in a stable to sleep in',
-                actions: [character.healthUp, character.healthUp],
+                actions: [character.healthUp, character.healthUp, character.happinessUp, character.happinessUp],
                 nextText: 6
             }
         ]
@@ -67,8 +67,8 @@ var textNodes = [
         text: 'You are so tired that you fall asleep while exploring the castle and are killed by some terrible monster in your sleep.',
         options: [
             {
-                text: 'Restart',
-                actions: [character.death],
+                text: 'Play again',
+                actions: [character.reset],
                 nextText: -1
             }
         ]
@@ -78,7 +78,8 @@ var textNodes = [
         text: 'Without any money to buy a room you break into the nearest inn and fall asleep. After a few hours of sleep the owner of the inn finds you and has the town guard lock you in a cell.',
         options: [
             {
-                text: 'Restart',
+                text: 'Play again',
+                actions: [character.reset],
                 nextText: -1
             }
         ]
@@ -89,6 +90,7 @@ var textNodes = [
         options: [
             {
                 text: 'Explore the castle',
+                actions: [character.death],
                 nextText: 7
             }
         ]
@@ -99,21 +101,25 @@ var textNodes = [
         options: [
             {
                 text: 'Try to run',
+                actions: [character.death],
                 nextText: 8
             },
             {
                 text: 'Attack it with your sword',
                 requiredState: (currentState) => currentState.sword,
+                actions: [character.death],
                 nextText: 9
             },
             {
                 text: 'Hide behind your shield',
                 requiredState: (currentState) => currentState.shield,
+                actions: [character.death],
                 nextText: 10
             },
             {
                 text: 'Throw the blue goo at it',
                 requiredState: (currentState) => currentState.blueGoo,
+                actions: [character.healthDown],
                 nextText: 11
             }
         ]
@@ -123,7 +129,8 @@ var textNodes = [
         text: 'Your attempts to run are in vain and the monster easily catches.',
         options: [
             {
-                text: 'Restart',
+                text: 'Play again',
+                actions: [character.reset],
                 nextText: -1
             }
         ]
@@ -133,7 +140,8 @@ var textNodes = [
         text: 'You foolishly thought this monster could be slain with a single sword.',
         options: [
             {
-                text: 'Restart',
+                text: 'Play',
+                actions: [character.reset],
                 nextText: -1
             }
         ]
@@ -143,7 +151,8 @@ var textNodes = [
         text: 'The monster laughed as you hid behind your shield and ate you.',
         options: [
             {
-                text: 'Restart',
+                text: 'Play again',
+                actions: [character.reset],
                 nextText: -1
             }
         ]
@@ -153,7 +162,8 @@ var textNodes = [
         text: 'You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.',
         options: [
             {
-                text: 'Congratulations. Play Again.',
+                text: 'Congratulations! Play Again.',
+                actions: [character.reset],
                 nextText: -1
             }
         ]
