@@ -26,14 +26,12 @@ FBInstant.initializeAsync()
                     .then(() => {
                         console.log("Game has been started!");
 
-
-
-                        var contextId = FBInstant.context.getID();
-                        var contextType = FBInstant.context.getType();
+                        // var contextId = FBInstant.context.getID();
+                        // var contextType = FBInstant.context.getType();
+                        // var playerId = FBInstant.player.getID();
 
                         var playerName = FBInstant.player.getName();
                         var playerPic = FBInstant.player.getPhoto();
-                        var playerId = FBInstant.player.getID();
 
                         const textElement = document.getElementById('text');
                         const optionButtonsElement = document.getElementById('option-buttons');
@@ -50,7 +48,10 @@ FBInstant.initializeAsync()
                         characterHappiness.value = character.happiness;
 
                         let state = {}
-
+                        backgroundMusic();
+                        setInterval(() => {
+                            backgroundMusic();
+                        }, 1000 * 10.9);
                         function startGame() {
                             state = {}
                             // characterHealth.value = character.health;
@@ -58,7 +59,14 @@ FBInstant.initializeAsync()
                             // characterHappiness.value = character.happiness;
                             // console.log(`Health: ${health.value}\nWealth: ${wealth.value}\nHappiness: ${happines.value}`);
                             showTextNode(1)
+
                         }
+
+                        function backgroundMusic() {
+                            var snd = new Audio("assets/audio/backgroundmusic.wav");
+                            snd.play();
+                        }
+
 
                         function showTextNode(textNodeIndex) {
                             const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
@@ -103,9 +111,7 @@ FBInstant.initializeAsync()
 
                         startGame()
 
-                        // console.log(`${playerId} and ${playerName}`);
                     })
-                // }
             }
         }, 50)
     });
