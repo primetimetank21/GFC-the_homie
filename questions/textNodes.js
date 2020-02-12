@@ -23,7 +23,7 @@ var textNodes = [
                 text: 'Keep fighting',
                 requiredState: (currentState) => currentState.fight,
                 setState: { round2: true },
-                actions: [character.healthUp, character.wealthUp],
+                actions: [character.death],
                 nextText: 13
             },
             {
@@ -34,7 +34,7 @@ var textNodes = [
     },
     {
         id: 3,
-        text: 'You sucessfully ran away. You look around and see a cup of goo nearby.',
+        text: 'You successfully ran away. You look around and see a cup of goo nearby.',
         options: [
             {
                 text: 'Take goo',
@@ -207,6 +207,7 @@ var textNodes = [
         options: [
             {
                 text: 'Restart',
+                actions:[character.reset],
                 nextText: -1
             }
         ]
