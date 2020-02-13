@@ -119,3 +119,6 @@ FBInstant.initializeAsync()
 
 // use this link (NOT in chrome) to test
 // https://www.facebook.com/embed/instantgames/3098210396865430/player?game_url=https://localhost:8080
+
+// this link is LIVE!
+// https://fb.gg/play/3098210396865430
